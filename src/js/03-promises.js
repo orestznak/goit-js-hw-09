@@ -17,15 +17,17 @@ refs.form.addEventListener('submit', (evt) => {
   const amountUser = parseInt(refs.inputAmount.value);
   const stepUser = parseInt(refs.inputStep.value);
 
-  for(let position = 1; position <= amountUser; position += 1) {
-    createPromise (position, delayUser)
-      .then(value => {
-        Notiflix.Notify.success(value);;
-      })
-      .catch(error => {
-        Notiflix.Notify.warning(error);
-      });
-    delayUser +=stepUser;
+  if(delayUser > 0 && amountUser > 0 && stepUser > 0) {
+    for(let position = 1; position <= amountUser; position += 1) {
+      createPromise (position, delayUser)
+        .then(value => {
+          Notiflix.Notify.success(value);;
+        })
+        .catch(error => {
+          Notiflix.Notify.warning(error);
+        });
+      delayUser +=stepUser;
+    }
   }
 
 });
