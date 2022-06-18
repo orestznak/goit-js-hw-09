@@ -12,13 +12,14 @@ ref.btnStop.addEventListener('click', onStop);
 
 function onStart(evt) {
     evt.preventDefault();
-    ref.btnStart.style.disabled = false;
+    ref.btnStart.disabled = false;
     ref.btnStart.style.color =  '#666666';
 
     intervalId = setInterval(() => {
         const changeColor = getRandomHexColor();
         ref.body.style.background = changeColor;
     },1000);
+    ref.btnStart.removeEventListener('click',onStart);
 };
 
 function onStop(evt) {
@@ -27,6 +28,7 @@ function onStop(evt) {
 
     ref.btnStart.style.disabled = true;
     ref.btnStart.style.color =  '#000000';
+    ref.btnStart.addEventListener('click', onStart);
 };
 
 function getRandomHexColor() {
